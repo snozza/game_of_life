@@ -1,10 +1,11 @@
 class Cell
-  attr_accessor :world, :x, :y
+  attr_accessor :dead, :world, :x, :y
 
   def initialize(world, x=0, y=0)
     @world = world
     @x = x
     @y = y
+    @dead = false
     world.cells << self
   end
 
@@ -24,6 +25,14 @@ class Cell
 
     @neighbours
 
+  end
+
+  def dead?
+    dead
+  end
+
+  def die!
+    world.cells.delete(self)
   end
 
   def spawn_at(x, y)

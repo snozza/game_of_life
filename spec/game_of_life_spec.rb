@@ -22,11 +22,22 @@ describe 'game of life' do
       cell = subject.spawn_at(1, 1)
       expect(subject.neighbours.count).to eq 1
     end
+
+    it "dies" do
+      subject.die!
+      expect(world.cells).to_not include subject
+    end
+
+    # it "detects a neighbour to the east" do
+    #   cell = subject.spawn_at(
+    # end
   end
 
 
   it "any live cell with fewer than two live neighbours dies" do
     cell = Cell.new(world)
-    expect(cell.neighbours.count).to eq 0
+    new_cell = cell.spawn_at(2, 0)
+    world.tick!
+    expect(cell).to be_dead
   end
 end
