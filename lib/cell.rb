@@ -5,22 +5,48 @@ class Cell
     @world = world
     @x = x
     @y = y
-    @dead = false
     world.cells << self
   end
 
   def neighbours
     @neighbours = []
-    #Has a cell to the north
+    
     world.cells.each do |cell|
+      #Has a cell to the north
       if self.x == cell.x && self.y == cell.y - 1
         @neighbours << cell
       end
 
-    #Has a cell to the north east
+      #Has a cell to the north east
       if self.x == cell.x - 1 && self.y == cell.y - 1
         @neighbours << cell
       end
+
+      #Has a cell to the west
+      if self.x == cell.x + 1 && self.y == cell.y
+        @neighbours << cell
+      end
+
+      #Has a cell to the east
+      if self.x == cell.x - 1 && self.y == cell.y
+        @neighbours << cell
+      end
+
+      #Has a cell to the south
+      if self.x == cell.x && self.y == cell.y + 1
+        @neighbours << cell
+      end
+
+      #Has a cell to the south east
+      if self.x == cell.x - 1 && self.y == cell.y + 1
+        @neighbours << cell
+      end
+
+      #Has a cell to the south west
+      if self.x == cell.x + 1 && self.y == cell.y + 1
+        @neighbours << cell
+      end
+
     end
 
     @neighbours
@@ -28,7 +54,11 @@ class Cell
   end
 
   def dead?
-    dead
+    !world.cells.include?(self)
+  end
+
+  def alive?
+    world.cells.include?(self)
   end
 
   def die!
