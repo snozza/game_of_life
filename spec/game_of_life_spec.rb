@@ -17,6 +17,11 @@ describe 'game of life' do
       cell = subject.spawn_at(0, 1)
       expect(subject.neighbours.count).to eq 1
     end
+
+    it "detects a neighbour to the north east" do
+      cell = subject.spawn_at(1, 1)
+      expect(subject.neighbours.count).to eq 1
+    end
   end
 
 

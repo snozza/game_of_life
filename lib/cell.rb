@@ -10,8 +10,14 @@ class Cell
 
   def neighbours
     @neighbours = []
+    #Has a cell to the north
     world.cells.each do |cell|
       if self.x == cell.x && self.y == cell.y - 1
+        @neighbours << cell
+      end
+
+    #Has a cell to the north east
+      if self.x == cell.x - 1 && self.y == cell.y - 1
         @neighbours << cell
       end
     end
